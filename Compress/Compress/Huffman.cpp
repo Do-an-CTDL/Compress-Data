@@ -16,6 +16,7 @@ Huffman::Huffman(char c) {
 }
 
 Huffman::~Huffman() {
+	
 }
 
 char Huffman::GetChar() const {
@@ -137,7 +138,7 @@ char Huffman::FindChar(string s, vector <Huffman*> _arr) {
 			return _arr[i]->_char;
 		}
 	}
-	return NULL;
+	return EOF;
 }
 
 int Huffman::BinaryToDecimal(string& s)  {
@@ -336,13 +337,32 @@ vector <char> Huffman::_64ToBinary(string& s) {
 string Huffman::ReadLine(int pos, string s) {
 	string result = "";
 	for (int i = pos; i < s.length(); i++) {
-		if (s[i] != '\n') {
-			result += s[i];
-		}
-		else {
+		if (s[i] == '\n' && s[i - 1] != '\n') {
 			return result;
 		}
+		result += s[i];
 	}
+}
+
+vector <Huffman*> Huffman::ReCreateTree(string& s) {
+	vector <Huffman*> _arr;
+	//Tai tao lai bo ma Huffman
+	string tmp = ReadLine(0, s);
+	int N = atoi(tmp.c_str()); //So luong ki tu co trong bo ma Huffman
+	int pos = tmp.length() + 1; //Bien pos luu lai vi tri dang doc
+
+	
+	for (int i = 0; i < N; i++) {
+		tmp = ReadLine(pos, s); //Doc tung dong lay ki tu va ma cua chung
+		pos = pos + tmp.length() + 1; //Doi vi tri doc xuong dong tiep theo
+
+		Huffman* _a = new Huffman;
+		Split(tmp, _a->_char, _a->_code);
+		_arr.push_back(_a);
+
+	}
+	s = s.substr(pos);
+	return _arr;
 }
 
 void Huffman::Encoding(string _name) {
@@ -407,7 +427,20 @@ void Huffman::Encoding(string _name) {
 	_tmp.clear();
 }
 
-void Huffman::Decoding(string _name) {
+void Huffman::Split(string& s, char& c, string& code) {
+	string tmp;
+	for (int i = 0; i < s.size(); i++) {
+		if (s[i] == ' ') {
+			code = s.substr(i + 1);
+			break;
+		}
+		tmp += s[i];
+	}
+	int x = atoi(tmp.c_str());
+	c = char(x);
+}
+
+void Huffman::Decoding(string _name, string _out) {
 	fstream _input;
 	_input.open(_name, ios::in | ios::binary);
 	if (_input.fail()) {
@@ -418,75 +451,52 @@ void Huffman::Decoding(string _name) {
 	stringstream ss;  //Luu toan bo nd file vao chuoi _data
 	ss << _input.rdbuf();
 	string _data = ss.str();
+	
 	_input.close();
 
-	//Tai tao lai bo ma Huffman
-	string tmp = ReadLine(0, _data);
-	int N = atoi(tmp.c_str()); //So luong ki tu co trong bo ma Huffman
-	int pos = tmp.length() + 1; //Bien pos luu lai vi tri dang doc
-
-	vector <Huffman*> _arr;
-	for (int i = 0; i < N; i++) {
-		tmp = ReadLine(pos, _data); //Doc tung dong lay ki tu va ma cua chung
-		pos = pos + tmp.length() + 1; //Doi vi tri doc xuong dong tiep theo
-
-		Huffman* _a = new Huffman;
-		if (tmp[0] != '\\') { //TH dac biet la ki tu xuong dong (ki tu duoc luu tru la \n)
-			_a->_char = tmp[0]; //Chu cai dau tien trong chuoi la ki tu
-			_a->_code = tmp.substr(1); //Nhung chu cai con lai la ma
-		}
-		else {
-			_a->_char = '\n';
-			_a->_code = tmp.substr(2);
-		}
-		_arr.push_back(_a);
-
-	}
+	vector<Huffman*> _dic = ReCreateTree(_data);
+	
 
 	//Lay do dai cua chuoi ban dau (vi khi ma hoa co them bit '0' de du bit)
-	tmp = ReadLine(pos, _data); 
-	pos = pos + tmp.length() + 1;
+	string tmp = ReadLine(0, _data);
+	_data = _data.substr(tmp.size() + 1); //Chuoi _data con lai se la chuoi ma hoa
 	int len = atoi(tmp.c_str());
 	
-	//Sao chep chuoi ma hoa
-	tmp.clear();
-	for (int i = pos; i < _data.size(); i++) {
-		tmp += _data[i];
-	}
-	tmp = _32ToBinary(tmp); //Ma hoa chuoi he 32 thanh he nhi phan
-	if (tmp.length() > len) { //Chuan hoa chuoi thanh co so bit bang dung chuoi ban dau
-		tmp = tmp.substr(tmp.length() - len);
+	vector <char> a;  //Chua chuoi sau khi ma hoa
+	a = _64ToBinary(_data); //Ma hoa chuoi he 64 thanh he nhi phan
+	if (a.size() > len) { //Chuan hoa chuoi thanh co so bit bang dung chuoi ban dau
+		a.erase(a.begin(), a.begin() + a.size() - len);
 	}
 
 	//Bat dau ma hoa va luu lai vao file txt
 	fstream _output;
-	_output.open("result.txt", ios::out);
+	_output.open(_out, ios::out | ios::binary);
 	if (_output.fail()) {
 		cout << "Failed";
 		return;
 	}
-	//int max = _arr.back()->_code.size();
+	
 
 	string s = ""; //chuoi s de luu chuoi
 	string s1; //chuoi s1 dung de so sanh
-	for (int i = 0; i < tmp.size(); i++) {
-		s += tmp[i];
+	for (int i = 0; i < a.size(); i++) {
+		s += a[i];
 		if (i + 1 < tmp.size()) {
 			s1 = s + tmp[i + 1];
 		}
 		else {
 			s1 += '3'; //TH doc nhung bit cuoi cung
 		}
-
-		if (FindChar(s, _arr) != NULL && FindChar(s1, _arr) == NULL) {
-			_output << FindChar(s, _arr);
+		//TH s tra ra la NULL (NULL that - NULL gia)
+		if (FindChar(s, _dic) != EOF && FindChar(s1, _dic) == EOF) {
+			_output << FindChar(s, _dic);
 			s.clear();
 			s1.clear();
 		}
 	}
 	_output.close();
 
-	for (int i = 0; i < _arr.size(); i++) { //Xoa bang tra cuu
-		delete _arr[i];
+	for (int i = 0; i < _dic.size(); i++) { //Xoa bang tra cuu
+		delete _dic[i];
 	}
 }
