@@ -1,0 +1,5 @@
+﻿  Huffman.cpp
+D:\Compress\Compress\Huffman.cpp(160,30): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\Compress\Compress\Huffman.cpp(56): warning C4715: 'Huffman::FindPos': not all control paths return a value
+D:\Compress\Compress\Huffman.cpp(346): warning C4715: 'Huffman::ReadLine': not all control paths return a value
+  Compress.vcxproj -> D:\Compress\x64\Debug\Compress.exe

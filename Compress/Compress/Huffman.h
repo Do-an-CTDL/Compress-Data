@@ -32,14 +32,17 @@ public:
 	static void Arrange(vector <Huffman*>& _arr);
 	static Huffman* CreateTree(vector <Huffman*>& _arr);
 	static void AddCode(Huffman* Root, string _code);
-	static string FindCode(vector <Huffman*>_arr, char c);
+	static vector <char> FindCode(vector <Huffman*>_arr, char c);
 
 	static char FindChar(string s, vector <Huffman*> _arr);
 	static int BinaryToDecimal(string& s);
 	static string DecimalToBinary(int x);
-	static string BinaryToHex(string& s);
+	/*static string BinaryToHex(string& s);
 	static string BinaryTo32(string& s);
-	static string _32ToBinary(string& s);
+	static string _32ToBinary(string& s);*/
+	static vector <char> BinaryTo64(string& s);
+	static vector <char> _64ToBinary(string& s);
+
 	
 	static string ReadLine(int pos, string s);
 	static void Encoding(string _name);
