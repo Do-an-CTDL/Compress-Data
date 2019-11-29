@@ -132,9 +132,10 @@ vector <char> Huffman::FindCode(vector <Huffman*> _arr, char c) {
 	return S;
 }
 
-char Huffman::FindChar(string s, vector <Huffman*> _arr) {
+char Huffman::FindChar(string s, vector <Huffman*> _arr, int& flag) {
 	for (int i = 0; i < _arr.size(); i++) {
 		if (_arr[i]->_code == s) {
+			flag = 1;
 			return _arr[i]->_char;
 		}
 	}
@@ -293,7 +294,8 @@ vector <char> Huffman::BinaryTo64(string& s) {
 		for (int i = 0; i < 2; i++) {
 			tmp = '0' + tmp;
 		}
-		result.push_back(FindChar(tmp, _dic));
+		int x;
+		result.push_back(FindChar(tmp, _dic, x));
 	}
 
 	for (int i = 0; i < _dic.size(); i++) {
@@ -479,6 +481,7 @@ void Huffman::Decoding(string _name, string _out) {
 
 	string s = ""; //chuoi s de luu chuoi
 	string s1; //chuoi s1 dung de so sanh
+	int flag1, flag2 = 0;
 	for (int i = 0; i < a.size(); i++) {
 		s += a[i];
 		if (i + 1 < tmp.size()) {
@@ -488,11 +491,14 @@ void Huffman::Decoding(string _name, string _out) {
 			s1 += '3'; //TH doc nhung bit cuoi cung
 		}
 		//TH s tra ra la NULL (NULL that - NULL gia)
-		if (FindChar(s, _dic) != EOF && FindChar(s1, _dic) == EOF) {
-			_output << FindChar(s, _dic);
+		char a = FindChar(s, _dic, flag1);
+		char b = FindChar(s1, _dic, flag2);
+		if (flag1 == 1 && flag2 == 0) {
+			_output << a;
 			s.clear();
 			s1.clear();
 		}
+		flag1 = flag2 = 0;
 	}
 	_output.close();
 
