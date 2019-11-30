@@ -3,6 +3,7 @@
 #include <fstream>
 #include <vector>
 #include <sstream>
+#include <algorithm>
 
 using namespace std;
 
@@ -34,6 +35,7 @@ public:
 	static void AddCode(Huffman* Root, string _code);
 	static vector <char> FindCode(vector <Huffman*>_arr, char c);
 
+	static char FindChar(vector <char> s, vector <Huffman*> _arr, int& flag);
 	static char FindChar(string, vector <Huffman*> _arr, int& flag);
 	static int BinaryToDecimal(string& s);
 	static string DecimalToBinary(int x);

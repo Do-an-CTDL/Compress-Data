@@ -58,16 +58,18 @@ int Huffman::FindPos(char c, vector <Huffman*> _arr) {
 
 void Huffman::CreateNode(string _name, vector <Huffman*>& _arr) {
 	
-	ifstream _input(_name);
+	ifstream _input(_name, ios::in | ios ::binary);
 
 	if (_input.fail()) {
 		cout << "Can't open this file" << endl;
 		return;
 	}
-
+	int dem = 0;
+	//ofstream _output()
 	while (!_input.eof()) {
 		char* Buffer = new char;
-		if (_input.read(Buffer, 1)) {
+		_input.read(Buffer, 1);
+
 			if (IsAvailable(*Buffer, _arr)) {
 				int pos = FindPos(*Buffer, _arr);
 				_arr[pos]->_frq++;
@@ -76,10 +78,11 @@ void Huffman::CreateNode(string _name, vector <Huffman*>& _arr) {
 				Huffman* tmp = new Huffman(*Buffer);
 				_arr.push_back(tmp);
 			}
-		}
+		
 		delete Buffer;
 	}
-
+	
+	cout << _arr.size() << "\n";
 	_input.close();
 }
 
@@ -135,6 +138,29 @@ vector <char> Huffman::FindCode(vector <Huffman*> _arr, char c) {
 char Huffman::FindChar(string s, vector <Huffman*> _arr, int& flag) {
 	for (int i = 0; i < _arr.size(); i++) {
 		if (_arr[i]->_code == s) {
+			flag = 1;
+			return _arr[i]->_char;
+		}
+	}
+	return EOF;
+}
+
+char Huffman::FindChar(vector <char> s, vector <Huffman*> _arr, int& flag) {
+	for (int i = 0; i < _arr.size(); i++) {
+		
+		int n = min(s.size(), _arr[i]->_code.size());
+
+		int check = 0;
+		for (int j = 0; j < n; j++) {
+
+			if (s[j] != _arr[i]->_code[j]) {
+				check = 1;
+				break;
+			}
+		}
+
+		if (!check && s.size() == _arr[i]->_code.size()) {
+
 			flag = 1;
 			return _arr[i]->_char;
 		}
@@ -479,21 +505,23 @@ void Huffman::Decoding(string _name, string _out) {
 	}
 	
 
-	string s = ""; //chuoi s de luu chuoi
-	string s1; //chuoi s1 dung de so sanh
+	vector <char> s ; //chuoi s de luu chuoi
+	vector <char> s1; //chuoi s1 dung de so sanh
 	int flag1, flag2 = 0;
 	for (int i = 0; i < a.size(); i++) {
-		s += a[i];
+		s.push_back(a[i]);
 		if (i + 1 < tmp.size()) {
-			s1 = s + tmp[i + 1];
+			s1 = s;
+			s1.push_back(tmp[i + 1]);
 		}
 		else {
-			s1 += '3'; //TH doc nhung bit cuoi cung
+			s1.push_back('3'); //TH doc nhung bit cuoi cung
 		}
 		//TH s tra ra la NULL (NULL that - NULL gia)
 		char a = FindChar(s, _dic, flag1);
 		char b = FindChar(s1, _dic, flag2);
 		if (flag1 == 1 && flag2 == 0) {
+			
 			_output << a;
 			s.clear();
 			s1.clear();

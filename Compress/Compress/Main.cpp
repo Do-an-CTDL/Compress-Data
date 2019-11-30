@@ -7,9 +7,9 @@ int main() {
 	cout << "Input name: ";
 	getline(cin, _name);*/
 
-	//string _in = "University.exe";
-	string b = "test.txt";
-	string _out = "result.exe";
+	string _in = "University.exe";
+	string b = "a.bmp";
+	string _out = "result.bmp";
 	string a = "test01";
 	
 	
@@ -18,7 +18,8 @@ int main() {
 	
 	Huffman::Encoding(b);
 	
-	//Huffman::Decoding(a,_out);
+	//cout << int('•');
+	Huffman::Decoding(a,_out);
 
 	
 
