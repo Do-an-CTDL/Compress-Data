@@ -1,1 +1,14 @@
+<<<<<<< HEAD
 ﻿  Compress.vcxproj -> C:\Users\DELL\Compress-Data\Compress\x64\Debug\Compress.exe
+=======
+﻿  Huffman.cpp
+C:\Users\Thanh\Compress-Data\Compress\Compress\Huffman.cpp(151,47): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Thanh\Compress-Data\Compress\Compress\Huffman.cpp(188,30): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Thanh\Compress-Data\Compress\Compress\Huffman.cpp(380,28): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Main.cpp
+  Generating Code...
+C:\Users\Thanh\Compress-Data\Compress\Compress\Huffman.cpp(385,31): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Thanh\Compress-Data\Compress\Compress\Huffman.cpp(57): warning C4715: 'Huffman::FindPos': not all control paths return a value
+C:\Users\Thanh\Compress-Data\Compress\Compress\Huffman.cpp(373): warning C4715: 'Huffman::ReadLine': not all control paths return a value
+  Compress.vcxproj -> C:\Users\Thanh\Compress-Data\Compress\x64\Debug\Compress.exe
+>>>>>>> e2dc90d750a8b5f0ff7dcc256286b37b8500eb7d
