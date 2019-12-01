@@ -49,10 +49,8 @@ public:
 	static string ReadLine(int pos, string s);
 	static void Split(string& s, char& c, int& frq);
 	static vector <Huffman*> ReCreateTree(string& s);
-	static void Encoding(string _name);
+	static void Encoding(string _name, string);
 	static void Decoding(string _name, string _out);
 
-	static void EncodingBitmap(vector <float*>);
-	static vector <float*>  DecodingBitmap(string _name);
 };
 
