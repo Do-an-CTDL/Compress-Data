@@ -58,20 +58,20 @@ int Huffman::FindPos(char c, vector <Huffman*> _arr) {
 
 void Huffman::CreateNode(string _name, vector <Huffman*>& _arr) {
 
-	
-	ifstream _input(_name, ios::in | ios ::binary);
+
+
+	ifstream _input;
+	_input.open(_name, ios::in | ios::binary);
 
 
 	if (_input.fail()) {
 		cout << "Can't open this file" << endl;
 		return;
 	}
-	int dem = 0;
-	//ofstream _output()
+
 	while (!_input.eof()) {
 		char* Buffer = new char;
-		_input.read(Buffer, 1);
-
+		if (_input.read(Buffer, 1)) {
 			if (IsAvailable(*Buffer, _arr)) {
 				int pos = FindPos(*Buffer, _arr);
 				_arr[pos]->_frq++;
@@ -80,11 +80,10 @@ void Huffman::CreateNode(string _name, vector <Huffman*>& _arr) {
 				Huffman* tmp = new Huffman(*Buffer);
 				_arr.push_back(tmp);
 			}
-		
+		}
 		delete Buffer;
 	}
-	
-	cout << _arr.size() << "\n";
+
 	_input.close();
 }
 
@@ -146,6 +145,7 @@ char Huffman::FindChar(string s, vector <Huffman*> _arr, int& flag) {
 	}
 	return EOF;
 }
+
 
 char Huffman::FindChar(vector <char> s, vector <Huffman*> _arr, int& flag) {
 

@@ -13,6 +13,7 @@ int main() {
 	string a = "test01";*/
 	//
 
+
 	string _in = "University.exe";
 	string b = "a.bmp";
 	string _out = "result.bmp";
@@ -22,6 +23,7 @@ int main() {
 	
 	
 	Folder thuMuc;
+
 
 	//Nen
 	thuMuc.Input(1);

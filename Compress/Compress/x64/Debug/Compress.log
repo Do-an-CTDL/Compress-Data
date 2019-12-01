@@ -1,4 +1,8 @@
-﻿  Folder.cpp
-C:\Users\Thanh\Compress-Data\Compress\Compress\Folder.cpp(59,30): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Thanh\Compress-Data\Compress\Compress\Folder.cpp(179,45): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+﻿  Huffman.cpp
+C:\Users\Thanh\Compress-Data\Compress\Compress\Huffman.cpp(154,49): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Thanh\Compress-Data\Compress\Compress\Huffman.cpp(191,30): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Thanh\Compress-Data\Compress\Compress\Huffman.cpp(397,28): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Thanh\Compress-Data\Compress\Compress\Huffman.cpp(402,31): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Thanh\Compress-Data\Compress\Compress\Huffman.cpp(57): warning C4715: 'Huffman::FindPos': not all control paths return a value
+C:\Users\Thanh\Compress-Data\Compress\Compress\Huffman.cpp(376): warning C4715: 'Huffman::ReadLine': not all control paths return a value
   Compress.vcxproj -> C:\Users\Thanh\Compress-Data\Compress\x64\Debug\Compress.exe
