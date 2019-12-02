@@ -22,7 +22,28 @@ public:
 	void DeleteTree(Huffman*);	//Huy cay Huffman
 	virtual ~Huffman();			//Ham huy
 	
+<<<<<<< HEAD
 	//Cac ham setter va getter
+=======
+	static bool IsAvailable(char c, vector <Huffman*>_arr);
+	static int FindPos(char c, vector <Huffman*>_arr);
+	static void CreateNode(string _name, vector <Huffman*>& _arr); //Create node
+
+	static void Arrange(vector <Huffman*>& _arr);
+	static Huffman* CreateTree(vector <Huffman*>& _arr);
+	static void AddCode(Huffman* Root, string _code);
+	static vector <char> FindCode(vector <Huffman*>_arr, char c);
+
+	static char FindChar(string, vector <Huffman*> _arr, int& flag);
+	static char FindChar(vector <char>, vector <Huffman*> _arr, int& flag);
+	static int BinaryToDecimal(string& s);
+	static string DecimalToBinary(int x);
+	/*static string BinaryToHex(string& s);
+	static string BinaryTo32(string& s);
+	static string _32ToBinary(string& s);*/
+	static vector <char> BinaryTo64(string& s);
+	static vector <char> _64ToBinary(string& s);
+>>>>>>> 8122d14765e38e424439eae958601cd6ff9ec479
 
 	char GetChar() const;		//Lay ki tu cua doi tuong
 	string GetCode() const;		//Lay ma Huffman cua doi tuong
@@ -30,6 +51,7 @@ public:
 	void SetChar(char);			//Cai dat ki tu cho doi tuong
 	void SetCode(string);		//Cai dat ma cho doi tuong
 	
+<<<<<<< HEAD
 	// Cac ham de tao bang tan so
 
 	static int IsAvailable(char c, vector <Huffman*>_arr);			//Kiem tra ky tu do da xuat hien chua
@@ -64,6 +86,13 @@ public:
 	static void Split(string& s, char& c, int& frq);			//Tach du lieu cua tung dong
 	static vector <Huffman*> ReCreateTree(string& s);			//Xay lai cay Huffman
 	static void Decoding(string _in, string _out);				//Giai nen file
+=======
+	static string ReadLine(int pos, string s);
+	static void Split(string& s, char& c, int& frq);
+	static vector <Huffman*> ReCreateTree(string& s);
+	static void Encoding(string _name, string);
+	static void Decoding(string _name, string _out);
+>>>>>>> 8122d14765e38e424439eae958601cd6ff9ec479
 
 };
 

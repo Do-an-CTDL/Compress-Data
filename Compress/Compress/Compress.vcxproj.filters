@@ -19,10 +19,14 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Folder.h">
+<<<<<<< HEAD
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Menu.h">
       <Filter>Header Files</Filter>
+=======
+      <Filter>Resource Files</Filter>
+>>>>>>> 8122d14765e38e424439eae958601cd6ff9ec479
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -35,8 +39,11 @@
     <ClCompile Include="Folder.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Menu.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+=======
+>>>>>>> 8122d14765e38e424439eae958601cd6ff9ec479
   </ItemGroup>
 </Project>

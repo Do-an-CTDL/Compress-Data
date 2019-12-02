@@ -74,9 +74,18 @@ int Huffman::IsAvailable(char c, vector <Huffman*> _arr) {
 
 void Huffman::CreateNode(string _name, vector <Huffman*>& _arr) {
 
+<<<<<<< HEAD
 	//Mo file
 	ifstream _input;
 	_input.open(_name, ios::in | ios::binary);
+=======
+
+
+	ifstream _input;
+	_input.open(_name, ios::in | ios::binary);
+
+
+>>>>>>> 8122d14765e38e424439eae958601cd6ff9ec479
 	if (_input.fail()) {
 		cout << space << "Khong the mo file nay" << endl;
 		return;
@@ -177,6 +186,10 @@ char Huffman::FindChar(string s, vector <Huffman*> _arr, int& flag) {
 	return EOF;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8122d14765e38e424439eae958601cd6ff9ec479
 char Huffman::FindChar(vector <char> s, vector <Huffman*> _arr, int& flag) {
 
 	for (int i = 0; i < _arr.size(); i++) {
@@ -201,9 +214,12 @@ char Huffman::FindChar(vector <char> s, vector <Huffman*> _arr, int& flag) {
 	return EOF;
 }
 
+<<<<<<< HEAD
 //-----------
 //CAC HAM MA HOA
 
+=======
+>>>>>>> 8122d14765e38e424439eae958601cd6ff9ec479
 int Huffman::BinaryToDecimal(string& s)  {
 	int result = 0;
 	for (int i = 0; i < s.size(); i++)
@@ -303,11 +319,55 @@ vector <char> Huffman::_64ToBinary(string& s) {
 //-------------
 //HAM NEN FILE
 
+<<<<<<< HEAD
 void Huffman::Encoding(string _name, string _nameOut) {
 	// Tao bang tan so
+=======
+void Huffman::Split(string& s, char& c, int& frq) {
+	string tmp;
+	for (int i = 0; i < s.size(); i++) {
+		if (s[i] == ' ') {
+			string ss = s.substr(i + 1);
+			frq = atoi(ss.c_str());
+			break;
+		}
+		tmp += s[i];
+	}
+	int x = atoi(tmp.c_str());
+	c = char(x);
+}
+
+vector <Huffman*> Huffman::ReCreateTree(string& s) {
+	vector <Huffman*> _arr, _copy;
+	//Tai tao lai bo ma Huffman
+	string tmp = ReadLine(0, s);
+	int N = atoi(tmp.c_str()); //So luong ki tu co trong bo ma Huffman
+	int pos = tmp.length() + 1; //Bien pos luu lai vi tri dang doc
+
+	
+	for (int i = 0; i < N; i++) {
+		tmp = ReadLine(pos, s); //Doc tung dong lay ki tu va ma cua chung
+		pos = pos + tmp.length() + 1; //Doi vi tri doc xuong dong tiep theo
+
+		Huffman* _a = new Huffman;
+		Split(tmp, _a->_char, _a->_frq);
+		_arr.push_back(_a);
+
+	}
+	_copy = _arr;
+	string code = "";
+	AddCode(CreateTree(_arr), code);
+	s = s.substr(pos);
+	return _copy;
+}
+
+void Huffman::Encoding(string _name, string _nameOut) {
+>>>>>>> 8122d14765e38e424439eae958601cd6ff9ec479
 	vector <Huffman*> _arr;
 	CreateNode(_name, _arr);
 	vector <Huffman*> _tmp = _arr; //Sao chep mang luu tru cac ky tu
+
+
 
 	//Tao ma cho tung nut
 	string code = "";
@@ -324,9 +384,14 @@ void Huffman::Encoding(string _name, string _nameOut) {
 		return;
 	}
 
+<<<<<<< HEAD
 	//Bat dau ma hoa
 	//Luu tru cay Huffman de su dung trong viec giai nen
 	_output << _tmp.size() << "\n";				//Ghi lai so luong ki tu
+=======
+	//Ma hoa file txt
+	_output << _tmp.size() << "\n"; //Ghi lai bang ma Huffman de cho viec ma hoa
+>>>>>>> 8122d14765e38e424439eae958601cd6ff9ec479
 	for (int i = 0; i < _tmp.size(); i++) {
 		_output << int(_tmp[i]->_char) << " ";  //Ghi lai ki tu va ma cua chung
 		_output << _tmp[i]->_frq << "\n";
@@ -367,6 +432,7 @@ void Huffman::Encoding(string _name, string _nameOut) {
 	_arr.clear();
 	_tmp.clear();
 
+<<<<<<< HEAD
 	//Dong file
 	_input.close();
 	_output.close();
@@ -483,6 +549,63 @@ void Huffman::Decoding(string _name, string _out) {
 		
 		
 	}
+=======
+	stringstream ss;  //Luu toan bo nd file vao chuoi _data
+	ss << _input.rdbuf();
+	string _data = ss.str();
+
+	_input.close();
+
+	vector<Huffman*> _dic = ReCreateTree(_data);
+
+
+	//Lay do dai cua chuoi ban dau (vi khi ma hoa co them bit '0' de du bit)
+	string tmp = ReadLine(0, _data);
+	_data = _data.substr(tmp.size() + 1); //Chuoi _data con lai se la chuoi ma hoa
+	int len = atoi(tmp.c_str());
+
+	vector <char> a;  //Chua chuoi sau khi ma hoa
+	a = _64ToBinary(_data); //Ma hoa chuoi he 64 thanh he nhi phan
+	if (a.size() > len) { //Chuan hoa chuoi thanh co so bit bang dung chuoi ban dau
+		a.erase(a.begin(), a.begin() + a.size() - len);
+	}
+
+	//Bat dau ma hoa va luu lai vao file txt
+	fstream _output;
+	_output.open(_out, ios::out | ios::binary);
+	if (_output.fail()) {
+		cout << "Failed";
+		return;
+	}
+
+
+
+	vector <char> s; //chuoi s de luu chuoi
+	vector <char> s1; //chuoi s1 dung de so sanh
+	int flag1 = 0, flag2 = 0;
+	for (int i = 0; i < a.size(); i++) {
+
+		s.push_back(a[i]);
+		if (i + 1 < a.size()) {
+			s1 = s;
+			s1.push_back(a[i + 1]);
+		}
+		else
+			s1.push_back('3');
+		//TH s tra ra la NULL (NULL that - NULL gia)
+		char a = FindChar(s, _dic, flag1);
+		char b = FindChar(s1, _dic, flag2);
+		if (flag1 == 1 && flag2 == 0) {
+
+			_output << a;
+			s.clear();
+			s1.clear();
+		}
+		flag1 = flag2 = 0;
+		
+		
+	}
+>>>>>>> 8122d14765e38e424439eae958601cd6ff9ec479
 
 	_output.close();
 	

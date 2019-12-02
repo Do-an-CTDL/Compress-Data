@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 #include "Huffman.h"
 #include "Folder.h"
 const string  space = "                                                         ";
+=======
+#include "Folder.h"
+>>>>>>> 8122d14765e38e424439eae958601cd6ff9ec479
 
 
 Folder::Folder() {
@@ -37,7 +41,11 @@ void Folder::RemoveFolder() {
 
 	}
 	catch (...){
+<<<<<<< HEAD
 		cout << space << "Khong the tim thay thu muc\n";
+=======
+		cout << "Khong the tim thay thu muc\n";
+>>>>>>> 8122d14765e38e424439eae958601cd6ff9ec479
 	}
 }
 
@@ -89,6 +97,10 @@ void Folder::InitFolder() {
 	}
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8122d14765e38e424439eae958601cd6ff9ec479
 //Doc tat ca cac file trong folder
 vector<string> Folder::GetNameFolder(string folder)
 {
@@ -133,6 +145,7 @@ vector<string> Folder::GetNameFolder(string folder)
 	return names;
 }
 
+<<<<<<< HEAD
 //Nen ca thu muc
 void Folder::EncodeFolder() {
 
@@ -167,42 +180,67 @@ void Folder::DecodeFolder() {
 	}
 }
 
+=======
+>>>>>>> 8122d14765e38e424439eae958601cd6ff9ec479
 //1: nen, 0 giai nen
 void Folder::Input(bool flag) {
 
 	WIN32_FIND_DATA FindFileData;
 	HANDLE hFind;
 
+<<<<<<< HEAD
 	cout << space << "Nhap ten thu muc: ";
 	cin.ignore();
+=======
+	cout << "Nhap Ten thu muc: ";
+
+>>>>>>> 8122d14765e38e424439eae958601cd6ff9ec479
 	getline(cin, _nameFolder);
 
 	char* tmp = new char[_nameFolder.size() + 1];
 
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> 8122d14765e38e424439eae958601cd6ff9ec479
 
 	for (int i = 0; i <= _nameFolder.size(); i++) {
 
 		tmp[i] = (_nameFolder[i]);
 	}
 
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> 8122d14765e38e424439eae958601cd6ff9ec479
 
 	const char* tmp2 = tmp;
 
 	hFind = FindFirstFile(tmp2, &FindFileData);
 	if (hFind == INVALID_HANDLE_VALUE)
 	{
+<<<<<<< HEAD
 		cout << space << "Khong the tim thay file dau tien (" << GetLastError() << ")" << endl;
+=======
+		printf("FindFirstFile failed (%d)\n", GetLastError());
+>>>>>>> 8122d14765e38e424439eae958601cd6ff9ec479
 		return;
 	}
 	else
 	{
+<<<<<<< HEAD
 		//printf(TEXT("%sFile dau tien la: %s\n"), space, FindFileData.cFileName);
+=======
+		printf(TEXT("The first file found is %s\n"),
+			FindFileData.cFileName);
+>>>>>>> 8122d14765e38e424439eae958601cd6ff9ec479
 
 		_name = GetNameFolder(FindFileData.cFileName);
 		if (flag == 1) {
 			_nameFolderOut = _nameFolder + "Compress";
+<<<<<<< HEAD
 
 			InitFolder();
 			EncodeFolder();
@@ -221,4 +259,59 @@ void Folder::Input(bool flag) {
 		}
 		FindClose(hFind);
 	}
+=======
+			
+			InitFolder();
+			EncodeFolder();
+			
+		}
+		else {
+			_nameFolderOut = _nameFolder ;
+			int pos = _nameFolderOut.find("Compress");
+
+			_nameFolderOut.replace(pos, 8, "Decompress");
+			cout << _nameFolderOut << "\n";
+
+			InitFolder();
+			DecodeFolder();
+		
+		}
+		FindClose(hFind);
+	}
+}
+
+
+//Nen ca thu muc
+void Folder::EncodeFolder() {
+
+
+	for (int i = 0; i < _name.size(); i++) {
+		
+		
+		string out = _name[i];
+		_name[i] = _nameFolder + '/' + _name[i];
+
+		out = _nameFolderOut + '/' + out;
+		
+		Huffman::Encoding(_name[i], out);
+	}
+}
+
+//Giai nen ca thu muc
+void Folder::DecodeFolder() {
+
+	
+	for (int i = 0; i < _name.size(); i++) {
+
+		
+		
+		string out = _name[i];
+		_name[i] = _nameFolder + '/' + _name[i];
+
+		out = _nameFolderOut + '/' + out;
+		
+
+		Huffman::Decoding(_name[i], out);
+	}
+>>>>>>> 8122d14765e38e424439eae958601cd6ff9ec479
 }
