@@ -18,14 +18,6 @@ Huffman::Huffman(char c) {
 	_right = NULL;
 }
 
-//void Huffman::DeleteTree(Huffman* root) {
-//	if (root != NULL) {
-//		DeleteTree(root->_left);
-//		DeleteTree(root->_right);
-//		delete root;
-//	}
-//}
-
 Huffman::~Huffman() {
 	if (_left != NULL) {
 		delete _left;
@@ -34,7 +26,6 @@ Huffman::~Huffman() {
 		delete _right;
 	}
 
-	//delete this;
 }
 
 //------------
@@ -74,18 +65,11 @@ int Huffman::IsAvailable(char c, vector <Huffman*> _arr) {
 
 void Huffman::CreateNode(string _name, vector <Huffman*>& _arr) {
 
-<<<<<<< HEAD
 	//Mo file
 	ifstream _input;
 	_input.open(_name, ios::in | ios::binary);
-=======
 
 
-	ifstream _input;
-	_input.open(_name, ios::in | ios::binary);
-
-
->>>>>>> 8122d14765e38e424439eae958601cd6ff9ec479
 	if (_input.fail()) {
 		cout << space << "Khong the mo file nay" << endl;
 		return;
@@ -186,10 +170,6 @@ char Huffman::FindChar(string s, vector <Huffman*> _arr, int& flag) {
 	return EOF;
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 8122d14765e38e424439eae958601cd6ff9ec479
 char Huffman::FindChar(vector <char> s, vector <Huffman*> _arr, int& flag) {
 
 	for (int i = 0; i < _arr.size(); i++) {
@@ -214,12 +194,10 @@ char Huffman::FindChar(vector <char> s, vector <Huffman*> _arr, int& flag) {
 	return EOF;
 }
 
-<<<<<<< HEAD
 //-----------
 //CAC HAM MA HOA
 
-=======
->>>>>>> 8122d14765e38e424439eae958601cd6ff9ec479
+
 int Huffman::BinaryToDecimal(string& s)  {
 	int result = 0;
 	for (int i = 0; i < s.size(); i++)
@@ -319,55 +297,10 @@ vector <char> Huffman::_64ToBinary(string& s) {
 //-------------
 //HAM NEN FILE
 
-<<<<<<< HEAD
 void Huffman::Encoding(string _name, string _nameOut) {
-	// Tao bang tan so
-=======
-void Huffman::Split(string& s, char& c, int& frq) {
-	string tmp;
-	for (int i = 0; i < s.size(); i++) {
-		if (s[i] == ' ') {
-			string ss = s.substr(i + 1);
-			frq = atoi(ss.c_str());
-			break;
-		}
-		tmp += s[i];
-	}
-	int x = atoi(tmp.c_str());
-	c = char(x);
-}
-
-vector <Huffman*> Huffman::ReCreateTree(string& s) {
-	vector <Huffman*> _arr, _copy;
-	//Tai tao lai bo ma Huffman
-	string tmp = ReadLine(0, s);
-	int N = atoi(tmp.c_str()); //So luong ki tu co trong bo ma Huffman
-	int pos = tmp.length() + 1; //Bien pos luu lai vi tri dang doc
-
-	
-	for (int i = 0; i < N; i++) {
-		tmp = ReadLine(pos, s); //Doc tung dong lay ki tu va ma cua chung
-		pos = pos + tmp.length() + 1; //Doi vi tri doc xuong dong tiep theo
-
-		Huffman* _a = new Huffman;
-		Split(tmp, _a->_char, _a->_frq);
-		_arr.push_back(_a);
-
-	}
-	_copy = _arr;
-	string code = "";
-	AddCode(CreateTree(_arr), code);
-	s = s.substr(pos);
-	return _copy;
-}
-
-void Huffman::Encoding(string _name, string _nameOut) {
->>>>>>> 8122d14765e38e424439eae958601cd6ff9ec479
 	vector <Huffman*> _arr;
 	CreateNode(_name, _arr);
 	vector <Huffman*> _tmp = _arr; //Sao chep mang luu tru cac ky tu
-
-
 
 	//Tao ma cho tung nut
 	string code = "";
@@ -384,20 +317,18 @@ void Huffman::Encoding(string _name, string _nameOut) {
 		return;
 	}
 
-<<<<<<< HEAD
 	//Bat dau ma hoa
 	//Luu tru cay Huffman de su dung trong viec giai nen
 	_output << _tmp.size() << "\n";				//Ghi lai so luong ki tu
-=======
+		
 	//Ma hoa file txt
-	_output << _tmp.size() << "\n"; //Ghi lai bang ma Huffman de cho viec ma hoa
->>>>>>> 8122d14765e38e424439eae958601cd6ff9ec479
+	_output << _tmp.size() << "\n";				//Ghi lai bang ma Huffman de cho viec ma hoa
 	for (int i = 0; i < _tmp.size(); i++) {
 		_output << int(_tmp[i]->_char) << " ";  //Ghi lai ki tu va ma cua chung
 		_output << _tmp[i]->_frq << "\n";
 	}
 
-	/*Chuyen tat ca cac ki tu trong file can ma hoa sang ma nhi phan va luu tru 
+	/*Chuyen tat ca cac ki tu trong file can ma hoa sang ma nhi phan va luu tru
 	trong vector <char> s*/
 	vector <char> s;
 	while (!_input.eof()) {
@@ -408,7 +339,7 @@ void Huffman::Encoding(string _name, string _nameOut) {
 		}
 		delete Buffer;
 	}
-	
+
 	/*Ghi lai chieu dai cua ma nhi phan da ma hoa vi luc giai chuoi se duoc them
 	nhung bit 0 o dau cho du bit va lam thay doi chieu dai */
 	_output << s.size() << "\n";
@@ -432,7 +363,7 @@ void Huffman::Encoding(string _name, string _nameOut) {
 	_arr.clear();
 	_tmp.clear();
 
-<<<<<<< HEAD
+	
 	//Dong file
 	_input.close();
 	_output.close();
@@ -549,7 +480,7 @@ void Huffman::Decoding(string _name, string _out) {
 		
 		
 	}
-=======
+
 	stringstream ss;  //Luu toan bo nd file vao chuoi _data
 	ss << _input.rdbuf();
 	string _data = ss.str();
@@ -605,7 +536,6 @@ void Huffman::Decoding(string _name, string _out) {
 		
 		
 	}
->>>>>>> 8122d14765e38e424439eae958601cd6ff9ec479
 
 	_output.close();
 	
