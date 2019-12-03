@@ -298,6 +298,14 @@ vector <char> Huffman::_64ToBinary(string& s) {
 //HAM NEN FILE
 
 void Huffman::Encoding(string _name, string _nameOut) {
+
+	string filename = "";
+	for (int i = _name.size() - 1; i >= 0; i--) {
+		if (_name[i] == '/')
+			break;
+		filename = _name[i] + filename;
+	}
+
 	vector <Huffman*> _arr;
 	CreateNode(_name, _arr);
 	vector <Huffman*> _tmp = _arr; //Sao chep mang luu tru cac ky tu
@@ -316,13 +324,13 @@ void Huffman::Encoding(string _name, string _nameOut) {
 		cout << space << "Khong the mo file nay" << endl;
 		return;
 	}
-
+	_output << filename << "\n";
 	//Bat dau ma hoa
 	//Luu tru cay Huffman de su dung trong viec giai nen
 	_output << _tmp.size() << "\n";				//Ghi lai so luong ki tu
 
 	//Ma hoa file txt
-	_output << _tmp.size() << "\n";				//Ghi lai bang ma Huffman de cho viec ma hoa
+	//_output << _tmp.size() << "\n";				//Ghi lai bang ma Huffman de cho viec ma hoa
 	for (int i = 0; i < _tmp.size(); i++) {
 		_output << int(_tmp[i]->_char) << " ";  //Ghi lai ki tu va ma cua chung
 		_output << _tmp[i]->_frq << "\n";
@@ -380,7 +388,7 @@ string Huffman::ReadLine(int pos, string s) {
 		}
 		result += s[i];
 	}
-	return NULL;
+	
 }
 
 void Huffman::Split(string& s, char& c, int& frq) {
@@ -430,7 +438,14 @@ void Huffman::Decoding(string _name, string _out) {
 	if (_input.fail()) {
 		cout << space << "Khong the mo file" << endl;
 		return;
+	
 	}
+	//doc ten file
+	string filename;
+	getline(_input, filename);
+	_out += filename;
+	
+
 
 	stringstream ss;								//Luu toan bo nd file vao chuoi _data
 	ss << _input.rdbuf();

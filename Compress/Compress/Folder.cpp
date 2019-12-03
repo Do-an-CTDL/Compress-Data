@@ -145,6 +145,16 @@ void Folder::EncodeFolder() {
 
 		out = _nameFolderOut + '/' + out;
 		
+		//Cat duoi dinh dang ra
+
+		for (int j = out.size() - 1; j >= 0; j--) {
+
+			if (out[j] == '.') {
+				out[j] = '\0';
+				break;
+			}
+		}
+
 		Huffman::Encoding(_name[i], out);
 	}
 }
@@ -160,7 +170,7 @@ void Folder::DecodeFolder() {
 		string out = _name[i];
 		_name[i] = _nameFolder + '/' + _name[i];
 
-		out = _nameFolderOut + '/' + out;
+		out = _nameFolderOut + '/';
 		
 
 		Huffman::Decoding(_name[i], out);
