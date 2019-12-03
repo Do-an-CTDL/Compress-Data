@@ -1,0 +1,10 @@
+﻿  Folder.cpp
+C:\Users\Thanh\source\repos\Compress\Compress\Folder.cpp(16,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Thanh\source\repos\Compress\Compress\Folder.cpp(29,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Thanh\source\repos\Compress\Compress\Folder.cpp(56,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Thanh\source\repos\Compress\Compress\Folder.cpp(74,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Thanh\source\repos\Compress\Compress\Folder.cpp(122,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Thanh\source\repos\Compress\Compress\Folder.cpp(140,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Thanh\source\repos\Compress\Compress\Folder.cpp(156,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Thanh\source\repos\Compress\Compress\Folder.cpp(184,20): warning C4018: '<=': signed/unsigned mismatch
+  Compress.vcxproj -> C:\Users\Thanh\source\repos\Compress\Debug\Compress.exe

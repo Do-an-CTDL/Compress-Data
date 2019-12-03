@@ -1,4 +1,3 @@
-#include "Huffman.h"
 #include "Folder.h"
 
 const string  space = "                                                         ";
@@ -194,13 +193,11 @@ void Folder::Input(bool flag) {
 	hFind = FindFirstFile(tmp2, &FindFileData);
 	if (hFind == INVALID_HANDLE_VALUE)
 	{
-		printf("FindFirstFile failed (%d)\n", GetLastError());
+		cout << space << "Khong tim thay thu muc\n";
 		return;
 	}
 	else
 	{
-		printf(TEXT("The first file found is %s\n"),
-			FindFileData.cFileName);
 
 		_name = GetNameFolder(FindFileData.cFileName);
 		if (flag == 1) {
@@ -215,7 +212,6 @@ void Folder::Input(bool flag) {
 			int pos = _nameFolderOut.find("Compress");
 
 			_nameFolderOut.replace(pos, 8, "Decompress");
-			cout << _nameFolderOut << "\n";
 
 			InitFolder();
 			DecodeFolder();

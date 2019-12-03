@@ -1,7 +1,6 @@
-#include <Windows.h>
-#include <tchar.h>
-#include <stdio.h>
-#include <direct.h>
+#include "Huffman.h"
+
+
 
 class Folder : public Huffman {
 

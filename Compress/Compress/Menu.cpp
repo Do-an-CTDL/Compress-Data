@@ -1,6 +1,4 @@
-﻿#include "Huffman.h"
-#include "Folder.h"
-#include "Menu.h"
+﻿#include "Menu.h"
 
 const string  space = "                                                         ";
 

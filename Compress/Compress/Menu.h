@@ -1,5 +1,8 @@
-#include <iomanip>
+#include "Folder.h"
+#include "Huffman.h"
 
+
+#include <iomanip>
 class Menu {
 
 public:
