@@ -1,7 +1,6 @@
 ﻿#pragma once
 
 #include <iomanip>
-const string  space = "                                                         ";
 
 #pragma pack(1)
 
@@ -107,16 +106,16 @@ public:
 	Color GetPixel(int , int );
 public:
 
-	void Compress(float );
-	void Decoding();
+	int Compress(float );
+	int Decoding();
 public:
 
 	int LoadBitmap();
 	int SaveBitmap();
 public:
 
-	void InputImageEncoding();
-	void InputImageDecoding();
+	bool InputImageEncoding();
+	bool InputImageDecoding();
 };
 
 

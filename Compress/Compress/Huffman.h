@@ -6,6 +6,8 @@
 #include <algorithm>
 
 using namespace std;
+const string  space = "                                                         ";
+
 
 class Huffman {
 private:

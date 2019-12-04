@@ -41,17 +41,17 @@ Image::Color Image::GetPixel(int row, int col)
 }
 
 
-//Doc anh
+// Doc anh
 int Image::LoadBitmap()
 {
 
 	FILE* f = fopen(_name, "rb");
 	if (f == NULL)
-		return 0;
+		return -1;
 
 	// read BMFHeader
 	BMFHeader bmfhd;
-	cout << sizeof(BMFHeader) << "\n";
+
 	if (fread(&bmfhd, sizeof(BMFHeader), 1, f) == 0)
 		return 0;
 
@@ -60,7 +60,7 @@ int Image::LoadBitmap()
 
 	// read DIBHeader
 	DIBHeader dibhd;
-	cout << sizeof(DIBHeader) << "\n";
+
 	if (fread(&dibhd, sizeof(DIBHeader), 1, f) == 0)
 		return 0;
 
@@ -88,7 +88,7 @@ int Image::LoadBitmap()
 
 int Image::SaveBitmap()
 {
-	
+
 	FILE* f = fopen(_nameOut, "wb");
 	if (f == NULL)
 		return 0;
@@ -244,7 +244,7 @@ void Image::Zigzag(vector<float>& block, size_t block_id, size_t channel)
 }
 
 
-void Image::Compress(float quality) {
+int Image::Compress(float quality) {
 
 
 	int widthBlock = width % 8 == 0 ? width / 8 : width / 8 + 1;
@@ -338,7 +338,9 @@ void Image::Compress(float quality) {
 				Zigzag(blocks, i * widthBlock + j, c);
 
 	//Nen theo LZW
-	LZW::encoding(blocks, width, height, quality, _nameOut);
+	int check = LZW::encoding(blocks, width, height, quality, _nameOut);
+	if (!check)
+		return 0;
 }
 
 //giai zigzac
@@ -432,13 +434,29 @@ void Image::YCCtoRGB(vector<float>& block, size_t block_id)
 }
 
 
-void Image::Decoding()
+int Image::Decoding()
 {
+	int checkDecompress = 1;
+	vector <float> blocks = LZW::decoding(_name, checkDecompress);
 
-	vector <float> blocks = LZW::decoding(_name);
+	if (checkDecompress == 0) {
+		cout << space << "Khong the tai file\n";
+		return 0;
+	}
+	if (checkDecompress == -1) {
+
+		cout << space << "Day khong phai ma hoa do chuong trinh chung toi lam\n";
+		return -1;
+	}
+
 	fstream fs(_name, ios::in | ios::binary);
+
+
 	
 	float quality;
+	//khong su dung so nay
+	int ignore;
+	fs >> ignore;
 
 	fs >> width;
 	fs >> height;
@@ -463,7 +481,7 @@ void Image::Decoding()
 			for (size_t c = 0; c < channels; ++c)
 				Dequantize(blocks, i * widthBlock + j, c, quality);
 
-	
+
 
 
 	// bien doi fourier nguoc
@@ -472,13 +490,13 @@ void Image::Decoding()
 			for (size_t c = 0; c < channels; ++c)
 				IDCT(blocks, i * widthBlock + j, c);
 
-	
+
 	//  [Y x64] [Cb x64] [Cr x64] 
 	for (size_t i = 0; i < heightblock; i++)
 		for (size_t j = 0; j < widthBlock; j++)
 			ScatterChannels(blocks, i * widthBlock + j);
 
-	
+
 
 	// YCrCb to RGB
 	for (size_t i = 0; i < heightblock; i++)
@@ -509,37 +527,16 @@ void Image::Decoding()
 	}
 
 
-	for (int i = 0; i < 64 * channels; i += channels) {
-
-		if (i % 24 == 0)
-			cout << "\n";
-		cout << setw(4) << int(blocks[i]) << " ";
-	}
-	cout << "\n";
-	for (int i = 0; i < 64 * channels; i += channels) {
-
-		if (i % 24 == 0)
-			cout << "\n";
-		cout << setw(4) << int(blocks[i + 1]) << " ";
-	}
-	cout << "\n";
-	for (int i = 0; i < 64 * channels; i += channels) {
-
-		if (i % 24 == 0)
-			cout << "\n";
-		cout << setw(4) << int(blocks[i + 2]) << " ";
-	}
-
-	cout << "\n------------------------------------\n";
-
-
+	
+	
 }
 
 
-void Image::InputImageEncoding() {
+bool Image::InputImageEncoding() {
 
-	cout << space << "Nhap ten cua anh can : ";
+	cout << space << "Nhap ten cua anh: ";
 	string tmp;
+	cin.ignore();
 	getline(cin, tmp);
 
 	_name = new char[tmp.size()];
@@ -554,16 +551,28 @@ void Image::InputImageEncoding() {
 		}
 	_nameOut = stringtoChar(tmp);
 
-	LoadBitmap();
+	int check = LoadBitmap();
+	if (check == 0) {
+		cout << space << "File nay khong phai bitmap\n";
+		return 0 ;
+	}
+	else
+		if (check == -1) {
+			cout << space << "Khong ton tai file anh nay\n";
+			return 0;
+		}
+	cout << space << "Xin cho trong giay lat\n";
 	Compress(1);
 
+	return 1;
 }
 
 //Nhap file giai nen
-void Image::InputImageDecoding() {
+bool Image::InputImageDecoding() {
 
-	cout << "Nhap ten file nen: ";
+	cout << space << "Nhap ten file nen: ";
 	string tmp;
+	cin.ignore();
 	getline(cin, tmp);
 
 	_name = stringtoChar(tmp);
@@ -572,7 +581,23 @@ void Image::InputImageDecoding() {
 	tmp += "Decompress.bmp";
 	_nameOut = stringtoChar(tmp);
 
-	Decoding();
-	SaveBitmap();
+	cout << space << "Xin cho trong giay lat\n";
+	int checkDecode = Decoding();
+	
+
+	if (checkDecode == 0 || checkDecode == -1) {
+
+		return 0 ;
+	}
+	
+	
+	int check = SaveBitmap();
+	
+	if (check == 0) {
+		cout << space << "Khong the xuat file hinh anh\n";
+		return 0;
+	}
+
+	return 1;
 }
 

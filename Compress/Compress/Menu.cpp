@@ -4,14 +4,21 @@
 #include "Menu.h"
 
 
-const string  space = "                                                         ";
-
 using namespace std;
 
 void Menu::ZoomConsole() {
 	ShowWindow(GetConsoleWindow(), SW_MAXIMIZE);
 	SendMessage(GetConsoleWindow(), WM_SYSKEYDOWN, VK_RETURN, 0x20000000);
 
+}
+
+
+void Menu::Nocursortype()
+{
+	CONSOLE_CURSOR_INFO Info;
+	Info.bVisible = FALSE;
+	Info.dwSize = 20;
+	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &Info);
 }
 
 void Menu::_Menu() {
@@ -109,8 +116,11 @@ void Menu::Select() {
 				}
 				case 3: {
 					Image a;
-					a.InputImageEncoding();
-					cout << space << "Da nen thanh cong" << endl;
+					int checkCompress = a.InputImageEncoding();
+					if (checkCompress)
+						cout << space << "Da nen thanh cong" << endl;
+					else
+						cout << space << "Nen that bai\n";
 					break;
 
 				}
@@ -173,8 +183,11 @@ void Menu::Select() {
 
 				case 3: {
 					Image a;
-					a.InputImageDecoding();
-					cout << space << "Da giai nen thanh cong" << endl;
+					bool  checkImage = a.InputImageDecoding();
+					if (checkImage == 0)
+						cout << space << "Giai nen that bai\n";
+					else
+						cout << space << "Da giai nen thanh cong" << endl;
 					break;
 				}
 

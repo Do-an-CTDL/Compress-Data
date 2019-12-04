@@ -1,7 +1,6 @@
 #include "Huffman.h"
 #include "Folder.h"
 
-const string  space = "                                                         ";
 
 Folder::Folder() {
 
@@ -212,7 +211,7 @@ void Folder::Input(bool flag) {
 
 		_name = GetNameFolder(FindFileData.cFileName);
 		if (flag == 1) {
-			_nameFolderOut = _nameFolder + "Compress";
+			_nameFolderOut = _nameFolder + "_Compress";
 
 			InitFolder();
 			EncodeFolder();

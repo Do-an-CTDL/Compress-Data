@@ -1,5 +1,4 @@
 #include "Huffman.h"
-const string  space = "                                                         ";
 
 //--------------
 //CAC HAM KHOI TAO VA HAM HUY

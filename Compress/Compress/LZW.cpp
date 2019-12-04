@@ -1,7 +1,7 @@
 #include "LZW.h"
 
 
-void LZW::encoding(vector <float> _data,int w, int h, float radius,  string fileOut)
+bool LZW::encoding(vector <float> _data, int w, int h, float radius, string fileOut)
 {
 	unordered_map<string, int> table;
 	int next_code = 256;
@@ -36,22 +36,44 @@ void LZW::encoding(vector <float> _data,int w, int h, float radius,  string file
 
 	ofstream _output(fileOut, ios::out | ios::binary);
 
+	if (!_output) {
+
+		cout << space << "Khong the file nay";
+		_output.close();
+		return 0;
+	}
+
+	_output << CheckFile << "\n";
 	_output << w << ' ' << h << ' ' << radius << "\n";
 
 	for (int i = 0; i < output_code.size(); i++)
 		_output << output_code[i] << ' ';
 
 	_output.close();
-
+	return 1;
 }
 
-vector<float> LZW::decoding(string fileIn)
+vector<float> LZW::decoding(string fileIn, int &checkDecode)
 {
 	ifstream _input(fileIn, ios::in | ios::binary);
 
-	unordered_map<int, string> table;
 	vector <float> out;
+	if (!_input) {
 
+		_input.close();
+		checkDecode = 0;
+		return out;
+	}
+
+	unordered_map<int, string> table;
+	
+	int checkData;
+	_input >> checkData;
+
+	if (checkData != CheckFile) {
+
+		checkDecode = -1;
+	}
 	//bo 3 so dau
 	int ignore;
 	_input >> ignore;
@@ -62,7 +84,7 @@ vector<float> LZW::decoding(string fileIn)
 
 	//doc so dau truoc
 	_input >> pre;
-	if (pre > 0)
+	if (pre > 128)
 		out.push_back(pre - 256);
 	else
 		out.push_back(pre);
@@ -75,10 +97,10 @@ vector<float> LZW::decoding(string fileIn)
 		table[i] = string(1, i);
 
 
-	//cout << s;
+	
 	int count = 256;
 	int x;
-	
+
 	while (_input >> x) {
 		current = x;
 		if (table.find(current) == table.end()) {

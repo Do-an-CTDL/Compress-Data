@@ -7,13 +7,18 @@
 #include <string>
 #include <Windows.h>
 #include <iostream>
-#include <vector>
 #include <sstream> 
 
+
+#define CheckFile 7032000
 using namespace std;
+
+
+const string  space = "                                                         ";
+
 class LZW {
 
 public:
-	static void encoding(vector <float>,int, int, float, string);
-	static vector <float> decoding(string);
+	static bool encoding(vector <float>,int, int, float, string);
+	static vector <float> decoding(string, int& );
 };
