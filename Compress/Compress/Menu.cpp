@@ -108,10 +108,24 @@ void Menu::Select() {
 					string _in, _out;
 					cin.ignore();
 					getline(cin, _in);
-					_out = _in.substr(0, _in.size() - 4);
+					//_out = _in.substr(0, _in.size() - 4);
+					for (int i = 0; i < _in.size(); i++) {
+						if (_in[i] == '.') {
+							break;
+						}
+						else {
+							_out += _in[i];
+						}
+					}
 
-					Huffman::Encoding(_in, _out);
-					cout << space << "Da nen thanh cong. File da nen ten la: " << _out << endl;
+					cout << space << "Xin doi trong giay lat" << endl;
+					if (Huffman::Encoding(_in, _out)) {
+						cout << space << "Da nen thanh cong. File da nen ten la: " << _out << endl;
+					}
+					else {
+						cout << space << "Nen that bai" << endl;
+					}
+
 					break;
 				}
 				case 3: {
@@ -127,8 +141,13 @@ void Menu::Select() {
 
 				case 4: {
 					Folder a;
-					a.Input(1);
-					cout << space << "Da nen thanh cong" << endl;
+					if (a.Input(1)) {
+						cout << space << "Da nen thanh cong" << endl;
+					}
+					else {
+						cout << space << "Nen that bai" << endl;
+					}
+
 					break;
 				}
 
@@ -175,9 +194,14 @@ void Menu::Select() {
 					cin.ignore();
 					getline(cin, _in);
 					_out = _in;
+					cout << space << "Xin doi trong giay lat" << endl;
 					
-					Huffman::Decoding(_in, _out);
-					cout << space << "Giai nen thanh cong. File giai nen ten la: " << _out << endl;
+					if (Huffman::Decoding(_in, _out)) {
+						cout << space << "Giai nen thanh cong. File giai nen ten la: " << _out << endl;
+					}
+					else {
+						cout << space << "Giai nen that bai" << endl;
+					}
 					break;
 				}
 
@@ -193,8 +217,13 @@ void Menu::Select() {
 
 				case 4: {
 					Folder a;
-					a.Input(0);
-					cout << space << "Da giai nen thanh cong" << endl;
+					if (a.Input(0)) {
+						cout << space << "Da giai nen thanh cong" << endl;
+					}
+					else {
+						cout << space << "Giai nen that bai" << endl;
+					}
+
 					break;
 				}
 

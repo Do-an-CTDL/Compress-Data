@@ -19,7 +19,7 @@ public:
 	Folder();
 	~Folder() = default;
 
-	void Input(bool);
+	bool Input(bool);
 	vector <string> GetNameFolder(string);
 	void EncodeFolder();
 	void DecodeFolder();

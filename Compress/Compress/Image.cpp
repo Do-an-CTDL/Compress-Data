@@ -539,6 +539,7 @@ bool Image::InputImageEncoding() {
 	cin.ignore();
 	getline(cin, tmp);
 
+
 	_name = new char[tmp.size()];
 
 	strcpy(_name, tmp.c_str());

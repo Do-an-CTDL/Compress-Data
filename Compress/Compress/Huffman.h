@@ -36,7 +36,7 @@ public:
 	// Cac ham de tao bang tan so
 
 	static int IsAvailable(char c, vector <Huffman*>_arr);			//Kiem tra ky tu do da xuat hien chua
-	static void CreateNode(string _name, vector <Huffman*>& _arr);	//Tao bang tan so va n cay con dua tren so luong ky tu trong bang tan so
+	static bool CreateNode(string _name, vector <Huffman*>& _arr);	//Tao bang tan so va n cay con dua tren so luong ky tu trong bang tan so
 
 	//Cac ham de xay dung cay Huffman va ma Huffman
 
@@ -56,14 +56,18 @@ public:
 	static string DecimalToBinary(int x);						//Chuyen tu thap phan sang nhi phan
 	static vector <char> BinaryTo64(string& s);					//Chuyen tu nhi phan sang ma 64
 	static vector <char> _64ToBinary(string& s);				//Chuyen tu ma 64 sang nhi phan
+	//static vector <char> BinaryTo256(string& s);				//Chuyen tu nhi phan sang ma 256
+	//static vector <char> _256ToBinary(string& s);				//Chuyen tu ma 256 sang nhi phan
 
 	// Ham nen file
 
-	static void Encoding(string _name, string _nameout);		//Nen file
+	static bool Encoding(string _name, string _nameout);		//Nen file
 
 	// Cac ham giai nen file
 
+	/*static string ReadLine(int pos, string s);
+	static vector <Huffman*> ReCreateTree(string& s);*/
 	static void Split(string& s, char& c, int& frq);			//Tach du lieu cua tung dong
-	static void Decoding(string _in, string& _out);				//Giai nen file
+	static bool Decoding(string _in, string& _out);				//Giai nen file
 };
 

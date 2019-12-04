@@ -178,7 +178,7 @@ void Folder::DecodeFolder() {
 }
 
 //1: nen, 0 giai nen
-void Folder::Input(bool flag) {
+bool Folder::Input(bool flag) {
 
 	WIN32_FIND_DATA FindFileData;
 	HANDLE hFind;
@@ -186,6 +186,7 @@ void Folder::Input(bool flag) {
 	cout << space << "Nhap ten thu muc: ";
 	cin.ignore();
 	getline(cin, _nameFolder);
+	cout << space << "Xin doi trong giay lat" << endl;
 
 	char* tmp = new char[_nameFolder.size() + 1];
 
@@ -204,7 +205,7 @@ void Folder::Input(bool flag) {
 	if (hFind == INVALID_HANDLE_VALUE)
 	{
 		cout << space << "Khong tim thay thu muc\n";
-		return;
+		return false;
 	}
 	else
 	{
@@ -229,4 +230,5 @@ void Folder::Input(bool flag) {
 		}
 		FindClose(hFind);
 	}
+	return true;
 }
