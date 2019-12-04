@@ -1,3 +1,4 @@
+#include "Huffman.h"
 #include "Folder.h"
 
 const string  space = "                                                         ";
@@ -8,7 +9,7 @@ Folder::Folder() {
 	_buff.clear();
 }
 
-//chuyen doi
+//Chuyen doi
 char* Folder::stringtoChar(string in) {
 
 	char* out = new char[in.size() + 1];

@@ -18,24 +18,36 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Folder.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
     <ClCompile Include="Huffman.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
     <ClCompile Include="Menu.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="LZW.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Folder.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Folder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Huffman.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Menu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LZW.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Folder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,14 +1,9 @@
-#pragma once
 #include <iostream>
 #include <string>
 #include <fstream>
 #include <vector>
 #include <sstream>
 #include <algorithm>
-#include <Windows.h>
-#include <tchar.h>
-#include <stdio.h>
-#include <direct.h>
 
 using namespace std;
 
@@ -66,9 +61,7 @@ public:
 
 	// Cac ham giai nen file
 
-	static string ReadLine(int pos, string s);					//Doc tung dong cua file nen
 	static void Split(string& s, char& c, int& frq);			//Tach du lieu cua tung dong
-	static vector <Huffman*> ReCreateTree(string& s);			//Xay lai cay Huffman
-	static void Decoding(string _in, string _out);				//Giai nen file
+	static void Decoding(string _in, string& _out);				//Giai nen file
 };
 

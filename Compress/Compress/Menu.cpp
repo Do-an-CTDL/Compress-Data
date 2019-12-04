@@ -1,4 +1,8 @@
-﻿#include "Menu.h"
+﻿#include "Huffman.h"
+#include "Folder.h"
+#include "Image.h"
+#include "Menu.h"
+
 
 const string  space = "                                                         ";
 
@@ -35,7 +39,9 @@ void Menu::_Menu_compress() {
 	cout << space << "|_____|________________________________________|" << endl;
 	cout << space << "|  2  | Nen 1 file " << setw(29) << "|" << endl;
 	cout << space << "|_____|________________________________________|" << endl;
-	cout << space << "|  3  | Nen 1 thu muc" << setw(27) << "|" << endl;
+	cout << space << "|  3  | Nen 1 anh bitmap " << setw(23) << "|" << endl;
+	cout << space << "|_____|________________________________________|" << endl;
+	cout << space << "|  4  | Nen 1 thu muc" << setw(27) << "|" << endl;
 	cout << space << "|_____|________________________________________|" << endl;
 	cout << endl << space << "Lua chon cua ban: ";
 }
@@ -51,7 +57,9 @@ void Menu::_Menu_decompress() {
 	cout << space << "|_____|________________________________________|" << endl;
 	cout << space << "|  2  | Giai nen 1 file" << setw(25) << "|" << endl;
 	cout << space << "|_____|________________________________________|" << endl;
-	cout << space << "|  3  | Giai nen 1 thu muc" << setw(22) << "|" << endl;
+	cout << space << "|  3  | Giai nen 1 anh bitmap" << setw(19) << "|" << endl;
+	cout << space << "|_____|________________________________________|" << endl;
+	cout << space << "|  4  | Giai nen 1 thu muc" << setw(22) << "|" << endl;
 	cout << space << "|_____|________________________________________|" << endl;
 	cout << endl << space << "Lua chon cua ban: ";
 }
@@ -99,8 +107,15 @@ void Menu::Select() {
 					cout << space << "Da nen thanh cong. File da nen ten la: " << _out << endl;
 					break;
 				}
-
 				case 3: {
+					Image a;
+					a.InputImageEncoding();
+					cout << space << "Da nen thanh cong" << endl;
+					break;
+
+				}
+
+				case 4: {
 					Folder a;
 					a.Input(1);
 					cout << space << "Da nen thanh cong" << endl;
@@ -146,19 +161,24 @@ void Menu::Select() {
 				case 2: {
 					cout << endl;
 					cout << endl << space << "Nhap ten file ban muon giai nen: ";
-					string _in, _out, _extend;
+					string _in, _out;
 					cin.ignore();
 					getline(cin, _in);
-					cout << endl << space << "Nhap phan mo rong cua file ket qua: ";
-					getline(cin, _extend);
-					_out = _in + _extend;
-
+					_out = _in;
+					
 					Huffman::Decoding(_in, _out);
 					cout << space << "Giai nen thanh cong. File giai nen ten la: " << _out << endl;
 					break;
 				}
 
 				case 3: {
+					Image a;
+					a.InputImageDecoding();
+					cout << space << "Da giai nen thanh cong" << endl;
+					break;
+				}
+
+				case 4: {
 					Folder a;
 					a.Input(0);
 					cout << space << "Da giai nen thanh cong" << endl;

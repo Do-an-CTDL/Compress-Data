@@ -1,5 +1,3 @@
-#include "Folder.h"
-#include "Huffman.h"
 
 
 #include <iomanip>

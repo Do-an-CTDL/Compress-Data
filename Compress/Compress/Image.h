@@ -1,6 +1,7 @@
 ﻿#pragma once
-#include "LZW.h"
+
 #include <iomanip>
+const string  space = "                                                         ";
 
 #pragma pack(1)
 

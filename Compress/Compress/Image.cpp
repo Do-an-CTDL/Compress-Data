@@ -1,4 +1,5 @@
 ﻿#define _CRT_SECURE_NO_WARNINGS
+#include "LZW.h"
 #include "Image.h"
 
 
@@ -537,7 +538,7 @@ void Image::Decoding()
 
 void Image::InputImageEncoding() {
 
-	cout << "Nhap ten cua anh: ";
+	cout << space << "Nhap ten cua anh can : ";
 	string tmp;
 	getline(cin, tmp);
 
