@@ -252,7 +252,7 @@ void Menu::Select() {
 
 		cout << endl;
 		system("cls");
-		cout << endl << endl << endl;
+		//cout << endl << endl << endl;
 		_Menu();
 		fflush(stdin);
 		cin >> _choice_main;

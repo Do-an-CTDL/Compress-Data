@@ -134,9 +134,9 @@ vector<string> Folder::GetNameFolder(string folder)
 }
 
 //Nen ca thu muc
-void Folder::EncodeFolder() {
+bool Folder::EncodeFolder() {
 
-
+	bool check = 1;
 	for (int i = 0; i < _name.size(); i++) {
 		
 		
@@ -155,14 +155,21 @@ void Folder::EncodeFolder() {
 			}
 		}
 
-		Huffman::Encoding(_name[i], out);
+		check = check & Huffman::Encoding(_name[i], out);
 	}
+
+	if (check) {
+		cout << space << "Ten thu muc giai nen: " << _nameFolderOut << "\n";
+		return 1;
+	}
+
+	return 0;
 }
 
 //Giai nen ca thu muc
-void Folder::DecodeFolder() {
+bool Folder::DecodeFolder() {
 
-	
+	bool check = 1;
 	for (int i = 0; i < _name.size(); i++) {
 
 		
@@ -170,11 +177,17 @@ void Folder::DecodeFolder() {
 		string out = _name[i];
 		_name[i] = _nameFolder + '/' + _name[i];
 
-		out = _nameFolderOut + '/';
+		out = _nameFolderOut + '/' + _name[i];
 		
 
-		Huffman::Decoding(_name[i], out);
+		check = check & Huffman::Decoding(_name[i], out);
 	}
+
+	if (check) {
+		cout << space << "Ten thu muc giai nen: " << _nameFolderOut << "\n";
+		return 1;
+	}
+	return 0;
 }
 
 //1: nen, 0 giai nen
@@ -197,7 +210,7 @@ bool Folder::Input(bool flag) {
 		tmp[i] = (_nameFolder[i]);
 	}
 
-
+	bool check = 0;
 
 	const char* tmp2 = tmp;
 
@@ -215,7 +228,7 @@ bool Folder::Input(bool flag) {
 			_nameFolderOut = _nameFolder + "_Compress";
 
 			InitFolder();
-			EncodeFolder();
+			check = EncodeFolder();
 
 		}
 		else {
@@ -225,10 +238,15 @@ bool Folder::Input(bool flag) {
 			_nameFolderOut.replace(pos, 8, "Decompress");
 
 			InitFolder();
-			DecodeFolder();
+			check = DecodeFolder();
 
 		}
 		FindClose(hFind);
 	}
+
+	if (!check)
+		return 0;
+
+
 	return true;
 }

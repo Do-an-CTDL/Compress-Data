@@ -20,8 +20,8 @@ public:
 
 	bool Input(bool);
 	vector <string> GetNameFolder(string);
-	void EncodeFolder();
-	void DecodeFolder();
+	bool EncodeFolder();
+	bool DecodeFolder();
 	void InitFolder();
 	
 };
