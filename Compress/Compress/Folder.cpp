@@ -5,7 +5,7 @@
 Folder::Folder() {
 
 	_name.clear();
-	_buff.clear();
+
 }
 
 //Chuyen doi

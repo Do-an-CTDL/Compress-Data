@@ -23,6 +23,8 @@ void Menu::Nocursortype()
 
 void Menu::_Menu() {
 
+	cout << "\n\n";
+	cout << space << "           CHUONG TRINH NEN VA GIAI NEN\n";
 	cout << space << " ______________________________________________" << endl;
 	cout << space << "| STT |" << setw(23) << "CHUC NANG" << setw(18) << "|" << endl;
 	cout << space << "|_____|________________________________________|" << endl;

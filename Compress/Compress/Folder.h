@@ -9,8 +9,7 @@ class Folder : public Huffman {
 	string _nameFolder;	
 	string _nameFolderOut;
 	vector <string> _name;
-	vector < vector <Huffman*> >  _buff;
-	vector <vector <char> > _data;
+
 
 	char* stringtoChar(string);
 	void RemoveFolder();

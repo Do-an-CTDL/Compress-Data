@@ -339,6 +339,12 @@ int Image::Compress(float quality) {
 
 	//Nen theo LZW
 	int check = LZW::encoding(blocks, width, height, quality, _nameOut);
+	if (check == 1) {
+
+		cout << space << "Ten file nen la: " << _nameOut << "\n";
+		return 1;
+	}
+
 	if (!check)
 		return 0;
 }
@@ -563,9 +569,12 @@ bool Image::InputImageEncoding() {
 			return 0;
 		}
 	cout << space << "Xin cho trong giay lat\n";
-	Compress(1);
 
-	return 1;
+	int checkCompress = Compress(1);
+	if (checkCompress)
+		return 1;
+	else
+		return 0;
 }
 
 //Nhap file giai nen
@@ -599,6 +608,8 @@ bool Image::InputImageDecoding() {
 		return 0;
 	}
 
+
+	cout << space << "Ten hinh anh sau khi giai nen: " << _nameOut << "\n";
 	return 1;
 }
 

@@ -1,39 +1,31 @@
-﻿  Folder.cpp
-C:\Users\DELL\Compress-Data\Compress\Compress\Folder.cpp(60,30): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\DELL\Compress-Data\Compress\Compress\Folder.cpp(150,30): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  Huffman.cpp
-C:\Users\DELL\Compress-Data\Compress\Compress\Folder.cpp(223,45): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\DELL\Compress-Data\Compress\Compress\Huffman.cpp(177,49): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\DELL\Compress-Data\Compress\Compress\Huffman.cpp(219,30): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  Image.cpp
-C:\Users\DELL\Compress-Data\Compress\Compress\Huffman.cpp(359,31): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\DELL\Compress-Data\Compress\Compress\Image.cpp(23,53): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\DELL\Compress-Data\Compress\Compress\Image.cpp(35,53): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\DELL\Compress-Data\Compress\Compress\Image.cpp(100,71): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data
-C:\Users\DELL\Compress-Data\Compress\Compress\Image.cpp(110,21): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data
-C:\Users\DELL\Compress-Data\Compress\Compress\Image.cpp(111,23): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data
-C:\Users\DELL\Compress-Data\Compress\Compress\Image.cpp(190,63): warning C4244: '=': conversion from 'double' to '_Ty', possible loss of data
-C:\Users\DELL\Compress-Data\Compress\Compress\Image.cpp(190,63): warning C4244:         with
-C:\Users\DELL\Compress-Data\Compress\Compress\Image.cpp(190,63): warning C4244:         [
-C:\Users\DELL\Compress-Data\Compress\Compress\Image.cpp(190,63): warning C4244:             _Ty=float
-C:\Users\DELL\Compress-Data\Compress\Compress\Image.cpp(190,63): warning C4244:         ]
-C:\Users\DELL\Compress-Data\Compress\Compress\Image.cpp(250,61): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\DELL\Compress-Data\Compress\Compress\Image.cpp(251,65): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\DELL\Compress-Data\Compress\Compress\Image.cpp(264,31): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\DELL\Compress-Data\Compress\Compress\Image.cpp(279,39): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\DELL\Compress-Data\Compress\Compress\Image.cpp(295,40): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\DELL\Compress-Data\Compress\Compress\Image.cpp(341,68): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\DELL\Compress-Data\Compress\Compress\Image.cpp(381,63): warning C4244: '=': conversion from 'double' to '_Ty', possible loss of data
-C:\Users\DELL\Compress-Data\Compress\Compress\Image.cpp(381,63): warning C4244:         with
-C:\Users\DELL\Compress-Data\Compress\Compress\Image.cpp(381,63): warning C4244:         [
-C:\Users\DELL\Compress-Data\Compress\Compress\Image.cpp(381,63): warning C4244:             _Ty=float
-C:\Users\DELL\Compress-Data\Compress\Compress\Image.cpp(381,63): warning C4244:         ]
-C:\Users\DELL\Compress-Data\Compress\Compress\Image.cpp(466,61): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\DELL\Compress-Data\Compress\Compress\Image.cpp(467,65): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+﻿  Image.cpp
+C:\Users\Thanh\Compress-Data\Compress\Compress\Image.cpp(23,53): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Thanh\Compress-Data\Compress\Compress\Image.cpp(35,53): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Thanh\Compress-Data\Compress\Compress\Image.cpp(100,71): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\Thanh\Compress-Data\Compress\Compress\Image.cpp(110,21): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\Thanh\Compress-Data\Compress\Compress\Image.cpp(111,23): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\Thanh\Compress-Data\Compress\Compress\Image.cpp(190,63): warning C4244: '=': conversion from 'double' to '_Ty', possible loss of data
+C:\Users\Thanh\Compress-Data\Compress\Compress\Image.cpp(190,63): warning C4244:         with
+C:\Users\Thanh\Compress-Data\Compress\Compress\Image.cpp(190,63): warning C4244:         [
+C:\Users\Thanh\Compress-Data\Compress\Compress\Image.cpp(190,63): warning C4244:             _Ty=float
+C:\Users\Thanh\Compress-Data\Compress\Compress\Image.cpp(190,63): warning C4244:         ]
+C:\Users\Thanh\Compress-Data\Compress\Compress\Image.cpp(250,61): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Thanh\Compress-Data\Compress\Compress\Image.cpp(251,65): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Thanh\Compress-Data\Compress\Compress\Image.cpp(264,31): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Thanh\Compress-Data\Compress\Compress\Image.cpp(279,39): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Thanh\Compress-Data\Compress\Compress\Image.cpp(295,40): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Thanh\Compress-Data\Compress\Compress\Image.cpp(341,68): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Thanh\Compress-Data\Compress\Compress\Image.cpp(387,63): warning C4244: '=': conversion from 'double' to '_Ty', possible loss of data
+C:\Users\Thanh\Compress-Data\Compress\Compress\Image.cpp(387,63): warning C4244:         with
+C:\Users\Thanh\Compress-Data\Compress\Compress\Image.cpp(387,63): warning C4244:         [
+C:\Users\Thanh\Compress-Data\Compress\Compress\Image.cpp(387,63): warning C4244:             _Ty=float
+C:\Users\Thanh\Compress-Data\Compress\Compress\Image.cpp(387,63): warning C4244:         ]
+C:\Users\Thanh\Compress-Data\Compress\Compress\Image.cpp(472,61): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Thanh\Compress-Data\Compress\Compress\Image.cpp(473,65): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   Menu.cpp
   Generating Code...
-C:\Users\DELL\Compress-Data\Compress\Compress\Image.cpp(524,24): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\DELL\Compress-Data\Compress\Compress\Image.cpp(27): warning C4715: 'Image::SetPixel': not all control paths return a value
-C:\Users\DELL\Compress-Data\Compress\Compress\Image.cpp(344): warning C4715: 'Image::Compress': not all control paths return a value
-C:\Users\DELL\Compress-Data\Compress\Compress\Image.cpp(532): warning C4715: 'Image::Decoding': not all control paths return a value
-  Compress.vcxproj -> C:\Users\DELL\Compress-Data\Compress\x64\Debug\Compress.exe
+C:\Users\Thanh\Compress-Data\Compress\Compress\Image.cpp(530,24): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Thanh\Compress-Data\Compress\Compress\Image.cpp(27): warning C4715: 'Image::SetPixel': not all control paths return a value
+C:\Users\Thanh\Compress-Data\Compress\Compress\Image.cpp(350): warning C4715: 'Image::Compress': not all control paths return a value
+C:\Users\Thanh\Compress-Data\Compress\Compress\Image.cpp(538): warning C4715: 'Image::Decoding': not all control paths return a value
+  Compress.vcxproj -> C:\Users\Thanh\Compress-Data\Compress\x64\Debug\Compress.exe
