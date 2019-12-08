@@ -177,7 +177,7 @@ bool Folder::DecodeFolder() {
 		string out = _name[i];
 		_name[i] = _nameFolder + '/' + _name[i];
 
-		out = _nameFolderOut + '/' + _name[i];
+		out = _nameFolderOut + '/' + out;
 		
 
 		check = check & Huffman::Decoding(_name[i], out);

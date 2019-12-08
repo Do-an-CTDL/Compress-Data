@@ -1,1 +1,5 @@
-﻿  Compress.vcxproj -> C:\Users\Thanh\Compress-Data\Compress\x64\Debug\Compress.exe
+﻿  Folder.cpp
+C:\Users\Thanh\Compress-Data\Compress\Compress\Folder.cpp(60,30): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Thanh\Compress-Data\Compress\Compress\Folder.cpp(150,30): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Thanh\Compress-Data\Compress\Compress\Folder.cpp(236,45): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Compress.vcxproj -> C:\Users\Thanh\Compress-Data\Compress\x64\Debug\Compress.exe
