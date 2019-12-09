@@ -174,9 +174,13 @@ char Huffman::FindChar(vector <char> s, vector <Huffman*> _arr, int& flag) {
 
 	for (int i = 0; i < _arr.size(); i++) {
 
-		int n = min(s.size(), _arr[i]->_code.length());
+		if (s.size() != _arr[i]->_code.length())
+			continue;
+
+		int n = s.size();
 
 		int check = 0;
+		
 		for (int j = 0; j < n; j++) {
 
 			if (s[j] != _arr[i]->_code[j]) {
@@ -296,59 +300,59 @@ vector <char> Huffman::_64ToBinary(string& s) {
 	return result;
 }
 
-//vector <char> Huffman::BinaryTo256(string& s) {
-//	vector <Huffman*> _dic;							//Tao bang ma 256
-//
-//	_dic.resize(256);
-//	for (int i = 0; i < 256; i++) {
-//		_dic[i] = new Huffman;
-//		_dic[i]->_char = char(i);
-//		_dic[i]->_code = DecimalToBinary(i);
-//	}
-//
-//	while (s.size() % 8 != 0) {						//Them cho du so bit
-//		s = '0' + s;
-//	}
-//
-//	vector <char> result;
-//
-//	for (int i = 0; i < s.length(); i += 8) {
-//		string tmp = s.substr(i, 8);
-//		int x;
-//		result.push_back(FindChar(tmp, _dic, x));
-//	}
-//
-//	for (int i = 0; i < _dic.size(); i++) {
-//		delete _dic[i];
-//	}
-//	_dic.clear();
-//	return result;
-//}
+vector <char> Huffman::BinaryTo256(string& s) {
+	vector <Huffman*> _dic;							//Tao bang ma 256
 
-//vector <char> Huffman::_256ToBinary(string& s) {
-//	
-//	vector <Huffman*> _dic;							//Tao bang ma 256
-//
-//	_dic.resize(256);
-//	for (int i = 0; i < 256; i++) {
-//		_dic[i] = new Huffman;
-//		_dic[i]->_char = char(i);
-//		_dic[i]->_code = DecimalToBinary(i);
-//	}
-//
-//	vector <char> result;
-//	for (int i = 0; i < s.length(); i++) {
-//		vector <char> tmp = FindCode(_dic, s[i]);
-//		//tmp.erase(tmp.begin(), tmp.begin() + 2);
-//		result.insert(result.end(), tmp.begin(), tmp.end());
-//	}
-//
-//	for (int i = 0; i < _dic.size(); i++) {
-//		delete _dic[i];
-//	}
-//	_dic.clear();
-//	return result;
-//}
+	_dic.resize(256);
+	for (int i = 0; i < 256; i++) {
+		_dic[i] = new Huffman;
+		_dic[i]->_char = char(i);
+		_dic[i]->_code = DecimalToBinary(i);
+	}
+
+	while (s.size() % 8 != 0) {						//Them cho du so bit
+		s = '0' + s;
+	}
+
+	vector <char> result;
+
+	for (int i = 0; i < s.length(); i += 8) {
+		string tmp = s.substr(i, 8);
+		int x;
+		result.push_back(FindChar(tmp, _dic, x));
+	}
+
+	for (int i = 0; i < _dic.size(); i++) {
+		delete _dic[i];
+	}
+	_dic.clear();
+	return result;
+}
+
+vector <char> Huffman::_256ToBinary(vector <char> & s) {
+	
+	vector <Huffman*> _dic;							//Tao bang ma 256
+
+	_dic.resize(256);
+	for (int i = 0; i < 256; i++) {
+		_dic[i] = new Huffman;
+		_dic[i]->_char = char(i);
+		_dic[i]->_code = DecimalToBinary(i);
+	}
+
+	vector <char> result;
+	for (int i = 0; i < s.size(); i++) {
+		vector <char> tmp = FindCode(_dic, s[i]);
+		//tmp.erase(tmp.begin(), tmp.begin() + 2);
+		result.insert(result.end(), tmp.begin(), tmp.end());
+	}
+
+	for (int i = 0; i < _dic.size(); i++) {
+		delete _dic[i];
+	}
+	_dic.clear();
+	return result;
+}
 //-------------
 //HAM NEN FILE
 
@@ -399,8 +403,9 @@ bool Huffman::Encoding(string _name, string _nameOut) {
 	_output << _tmp.size() << "\n";				//Ghi lai so luong ki tu trong bang tan so
 
 	for (int i = 0; i < _tmp.size(); i++) {
-		_output << int(_tmp[i]->_char) << " ";  //Ghi lai ki tu va tan so cua chung
-		_output << _tmp[i]->_frq << "\n";
+		_output.write(&_tmp[i]->_char, sizeof(char)) ;  //Ghi lai ki tu va tan so cua chung
+		//_output << _tmp[i]->_frq << "\n";
+		_output.write(reinterpret_cast<char*> (&_tmp[i]->_frq), sizeof(int));
 	}
 
 	/*Chuyen tat ca cac ki tu trong file can ma hoa sang ma nhi phan va luu tru
@@ -417,19 +422,20 @@ bool Huffman::Encoding(string _name, string _nameOut) {
 
 	/*Ghi lai chieu dai cua ma nhi phan da ma hoa vi luc giai chuoi se duoc them
 	nhung bit 0 o dau cho du bit va lam thay doi chieu dai */
-	_output << s.size() << "\n";
-
+	//_output << s.size() << "\n";
+	int size = s.size();
+	_output.write(reinterpret_cast<char*>(& size), sizeof(int));
 	//Chuyen chuoi nhi phan vua ma hoa thanh bang he 64
 	string ss;
 	for (int i = 0; i < s.size(); i++) {
 		ss += s[i];
 	}
-	s = BinaryTo64(ss);
-	//s = BinaryTo256(ss);
+	//s = BinaryTo64(ss);
+	s = BinaryTo256(ss);
 
-	//Chep chuoi 64 vua ma hoa vao file ket qua
+	//Chep chuoi 256 vua ma hoa vao file ket qua
 	for (int i = 0; i < s.size(); i++) {
-		_output << s[i];
+		_output.write(&s[i], sizeof(char));
 	}
 
 	//Giai phong bo nho
@@ -532,11 +538,23 @@ bool Huffman::Decoding(string _name, string& _out) {
 
 	//Tao bang tan so
 	for (int i = 0; i < N; i++) {
-		string tmp;
-		getline(_input, tmp);
+		//string tmp;
+		//getline(_input, tmp);
+		char c;
+		int f;
+		_input.read(&c, sizeof(char));
+
+		//_input >> f;
+		_input.read(reinterpret_cast<char*> (&f), sizeof(int));
 		Huffman* a = new Huffman;
-		Split(tmp, a->_char, a->_frq);
+		//Split(tmp, a->_char, a->_frq);
+		a->_char = c;
+		a->_frq = f;
 		_dic.push_back(a);
+
+		char ignore;
+	
+
 	}
 
 	//Xay lai cay va sinh ma Huffman
@@ -549,19 +567,36 @@ bool Huffman::Decoding(string _name, string& _out) {
 		_dic[0]->_code = '0';
 	}
 
+	/*AVL Dic;
+	Dic.Input(_dic);*/
+	unordered_map<string, char> table;
+
+
+	for (int i = 0; i < _dic.size(); i++) {
+
+		table[(_dic[i]->_code)] = _dic[i]->_char;
+	}
 	//Lay do dai cua chuoi ban dau (vi khi ma hoa co them bit '0' de du bit)
 	
 	int len;
-	_input >> len;
-	getline(_input, buffer);							//Doi vi tri con tro
+	//_input >> len;
+	_input.read(reinterpret_cast<char*> (&len), sizeof(int));
 
-	string _data;										//Luu tru ma can ma hoa
-	getline(_input, _data);
+	//getline(_input, buffer);							//Doi vi tri con tro
+
+	vector <char> _data ;											//Luu tru ma can ma hoa
+	char c;
+	while (_input.read(&c, sizeof(char))) {
+
+		_data.push_back(c);
+	}
+
+	
 	_input.close();
 
 	vector <char> a;									//Chua chuoi sau khi ma hoa
-	a = _64ToBinary(_data);								//Ma hoa chuoi he 64 thanh he nhi phan
-	//a = _256ToBinary(_data);
+	//a = _64ToBinary(_data);								//Ma hoa chuoi he 64 thanh he nhi phan
+	a = _256ToBinary(_data);
 	if (a.size() > len) {								//Chuan hoa chuoi thanh co so bit bang dung chuoi ban dau
 		a.erase(a.begin(), a.begin() + a.size() - len);
 	}
@@ -570,24 +605,33 @@ bool Huffman::Decoding(string _name, string& _out) {
 	fstream _output;
 	_output.open(_out, ios::out | ios::binary);
 
-	vector <char> s; //chuoi s de luu chuoi
-	vector <char> s1; //chuoi s1 dung de so sanh
+	string s; //chuoi s de luu chuoi
+	string s1; //chuoi s1 dung de so sanh
 
-	int flag1 = 0, flag2 = 0;						//Thu thuat co hieu, flag = 1 khi tim duoc ky tu
+	bool flag1 = 0, flag2 = 0;						//Thu thuat co hieu, flag = 1 khi tim duoc ky tu
 	for (int i = 0; i < a.size(); i++) {
 
 		s.push_back(a[i]);
 		if (i + 1 < a.size()) {
-			s1 = s;
-			s1.push_back(a[i + 1]);
+			s1 += s;
 		}
 		else
 			s1.push_back('3');
-		char a = FindChar(s, _dic, flag1);
-		char b = FindChar(s1, _dic, flag2);
+		/*char a = AVL::Search(Dic.Tree, s, flag1);
+		char b = AVL::Search(Dic.Tree, s1, flag2);*/
+		char a, b;
+		if (table.find(s) != table.end()) {
+			flag1 = 1;
+			a = table.find(s)->second;
+		}
+		if (table.find(s1) != table.end()) {
+			flag2 = 1;
+			a = table.find(s1)->second;
+		}
+
 		if (flag1 == 1 && flag2 == 0) {
 
-			_output << a;
+			_output.write(&a, sizeof(char));
 			s.clear();
 			s1.clear();
 		}
@@ -678,3 +722,5 @@ bool Huffman::Decoding(string _name, string& _out) {
 //		delete _dic[i];
 //	}
 //}
+
+

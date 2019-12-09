@@ -1,12 +1,17 @@
+#pragma once
 #include <iostream>
 #include <string>
 #include <fstream>
 #include <vector>
 #include <sstream>
 #include <algorithm>
+#include <unordered_map>
 
 using namespace std;
 const string  space = "                                                         ";
+
+
+
 
 
 class Huffman {
@@ -16,6 +21,9 @@ private:
 	string _code;				//Ma Huffman cua ki tu do
 	Huffman* _left;				//Dia chi cua nut ben trai trong cay Huffman
 	Huffman* _right;			//Dia chi cua nut ben phai trong cay Huffman
+
+	
+
 public:
 
 	//Cac ham khoi tao va ham huy
@@ -56,8 +64,8 @@ public:
 	static string DecimalToBinary(int x);						//Chuyen tu thap phan sang nhi phan
 	static vector <char> BinaryTo64(string& s);					//Chuyen tu nhi phan sang ma 64
 	static vector <char> _64ToBinary(string& s);				//Chuyen tu ma 64 sang nhi phan
-	//static vector <char> BinaryTo256(string& s);				//Chuyen tu nhi phan sang ma 256
-	//static vector <char> _256ToBinary(string& s);				//Chuyen tu ma 256 sang nhi phan
+	static vector <char> BinaryTo256(string& s);				//Chuyen tu nhi phan sang ma 256
+	static vector <char> _256ToBinary(vector <char>& s);				//Chuyen tu ma 256 sang nhi phan
 
 	// Ham nen file
 
@@ -70,4 +78,3 @@ public:
 	static void Split(string& s, char& c, int& frq);			//Tach du lieu cua tung dong
 	static bool Decoding(string _in, string& _out);				//Giai nen file
 };
-

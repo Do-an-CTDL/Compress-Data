@@ -44,11 +44,12 @@ bool LZW::encoding(vector <float> _data, int w, int h, float radius, string file
 	}
 
 	_output << CheckFile << "\n";
-	_output << w << ' ' << h << ' ' << radius << "\n";
+	_output << w << ' ' << h << ' ' << radius;
 
-	for (int i = 0; i < output_code.size(); i++)
-		_output << output_code[i] << ' ';
-
+	for (int i = 0; i < output_code.size(); i++) {
+		int x = output_code[i];
+		_output.write(reinterpret_cast<char*> (&x), sizeof(int));
+	}
 	_output.close();
 	return 1;
 }
@@ -73,6 +74,8 @@ vector<float> LZW::decoding(string fileIn, int &checkDecode)
 	if (checkData != CheckFile) {
 
 		checkDecode = -1;
+
+		return out;
 	}
 	//bo 3 so dau
 	int ignore;
@@ -80,10 +83,11 @@ vector<float> LZW::decoding(string fileIn, int &checkDecode)
 	_input >> ignore;
 	_input >> ignore;
 
-	int pre;
+	
 
 	//doc so dau truoc
-	_input >> pre;
+	int pre;
+	_input.read(reinterpret_cast<char*> (&pre), sizeof(int));
 	if (pre > 128)
 		out.push_back(pre - 256);
 	else
@@ -101,7 +105,7 @@ vector<float> LZW::decoding(string fileIn, int &checkDecode)
 	int count = 256;
 	int x;
 
-	while (_input >> x) {
+	while (_input.read(reinterpret_cast<char*> (&x), sizeof(int))) {
 		current = x;
 		if (table.find(current) == table.end()) {
 			s = table[pre];
