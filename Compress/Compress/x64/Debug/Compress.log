@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+﻿  Main.cpp
+  Compress.vcxproj -> C:\Users\DELL\Compress-Data\Compress\x64\Debug\Compress.exe
+=======
 ﻿  Folder.cpp
 C:\Users\Thanh\Compress-Data\Compress\Compress\Folder.cpp(60,30): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\Thanh\Compress-Data\Compress\Compress\Folder.cpp(150,30): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
@@ -12,3 +16,4 @@ C:\Users\Thanh\Compress-Data\Compress\Compress\Huffman.cpp(555,8): warning C4101
   Generating Code...
 C:\Users\Thanh\Compress-Data\Compress\Compress\Huffman.cpp(622,11): warning C4101: 'b': unreferenced local variable
   Compress.vcxproj -> C:\Users\Thanh\Compress-Data\Compress\x64\Debug\Compress.exe
+>>>>>>> a746694b7cc37ff4499541212b204e9061f08ce2

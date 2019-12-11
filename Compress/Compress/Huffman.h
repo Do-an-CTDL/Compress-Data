@@ -43,12 +43,11 @@ public:
 
 	// Cac ham de tao bang tan so
 
-	static int IsAvailable(char c, vector <Huffman*>_arr);			//Kiem tra ky tu do da xuat hien chua
 	static bool CreateNode(string _name, vector <Huffman*>& _arr);	//Tao bang tan so va n cay con dua tren so luong ky tu trong bang tan so
 
 	//Cac ham de xay dung cay Huffman va ma Huffman
 
-	static void Arrange(vector <Huffman*>& _arr);					//Sap xep bang tan so theo thu tu tan so tang dan
+	static void QSort(vector <Huffman*>& , int , int );
 	static Huffman* CreateTree(vector <Huffman*>& _arr);			//Xay dung cay Huffman
 	static void AddCode(Huffman* Root, string _code);				//Tao ma Huffman cho tung ky tu
 
@@ -56,16 +55,14 @@ public:
 
 	static vector <char> FindCode(vector <Huffman*>_arr, char c);			//Dua vao ma va tim ky tu cua no	
 	static char FindChar(string, vector <Huffman*> _arr, int& flag);		//Dua vao ky tu va tim ma cua no (truyen vao string)
-	static char FindChar(vector <char>, vector <Huffman*> _arr, int& flag);	//Dua vao ky tu va tim ma cua no (truyen vao vector <char>)
+	
 
 	//Cac ham ma hoa
 
 	static int BinaryToDecimal(string& s);						//Chuyen tu nhi phan sang thap phan
 	static string DecimalToBinary(int x);						//Chuyen tu thap phan sang nhi phan
-	static vector <char> BinaryTo64(string& s);					//Chuyen tu nhi phan sang ma 64
-	static vector <char> _64ToBinary(string& s);				//Chuyen tu ma 64 sang nhi phan
-	static vector <char> BinaryTo256(string& s);				//Chuyen tu nhi phan sang ma 256
-	static vector <char> _256ToBinary(vector <char>& s);				//Chuyen tu ma 256 sang nhi phan
+	static string BinaryTo256(string& s);						//Chuyen tu nhi phan sang ma 256
+	static string _256ToBinary(vector <char>& s);				//Chuyen tu ma 256 sang nhi phan
 
 	// Ham nen file
 
@@ -73,8 +70,5 @@ public:
 
 	// Cac ham giai nen file
 
-	/*static string ReadLine(int pos, string s);
-	static vector <Huffman*> ReCreateTree(string& s);*/
-	static void Split(string& s, char& c, int& frq);			//Tach du lieu cua tung dong
 	static bool Decoding(string _in, string& _out);				//Giai nen file
 };
