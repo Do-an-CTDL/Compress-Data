@@ -133,9 +133,9 @@ Huffman* Huffman::CreateTree(vector <Huffman*>& _arr) {
 	va tao mot nut cha co ky tu la NULL va tan so bang tong tan so cua 2 nut con
 	va co 2 con la 2 nut do. Lap lai cho den khi trong bang chi con 1 nut duy nhat*/
 	//Sap xep lai bang tan so theo thu tu tang dan
-	QSort(_arr, 0, _arr.size() - 1);
+	
 	while (_arr.size() != 1) {
-
+		QSort(_arr, 0, _arr.size() - 1);
 		Huffman* tmp = new Huffman;
 		tmp->_char = NULL;								//Tao nut cha co ky tu la NULL
 		tmp->_frq = _arr[0]->_frq + _arr[1]->_frq;		//va co tan so bang tong tan so cua 2 nut con

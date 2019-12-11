@@ -24,7 +24,7 @@ void Folder::RemoveFolder() {
 	try {
 		
 		vector <string> name = GetNameFolder(_nameFolderOut);
-
+	
 		//xoa tung file
 		for (int i = 0; i < name.size(); i++) {
 			
@@ -147,14 +147,18 @@ bool Folder::EncodeFolder() {
 		
 		//Cat duoi dinh dang ra
 
+		bool flag = 0;
 		for (int j = out.size() - 1; j >= 0; j--) {
 
 			if (out[j] == '.') {
-				out[j] = '\0';
+				out.erase(j, out.size() - j);
+				flag = 1;
 				break;
 			}
 		}
-
+		
+		out += '_' + to_string(i);
+		
 		check = check & Huffman::Encoding(_name[i], out);
 	}
 
@@ -179,6 +183,14 @@ bool Folder::DecodeFolder() {
 
 		out = _nameFolderOut + '/' + out;
 		
+		for (int j = out.size() - 1; j >= 0; j--) {
+
+			if (out[j] == '_') {
+				out.erase(j, out.size() - j);
+
+				break;
+			}
+		}
 
 		check = check & Huffman::Decoding(_name[i], out);
 	}
